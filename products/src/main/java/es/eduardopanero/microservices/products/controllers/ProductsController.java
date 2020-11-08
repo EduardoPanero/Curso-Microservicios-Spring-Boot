@@ -48,7 +48,7 @@ public class ProductsController {
 	@PutMapping("{id}")
 	public ResponseEntity<Product> update(@PathVariable("id") Long id, @RequestBody Double price) {
 		try {
-			return this.productsService.get(id)
+			return this.productsService.update(id, price)
 					.map(product -> ResponseEntity.ok(product))
 					.orElseGet(()-> ResponseEntity.notFound().build());
 		} catch (Exception ex) {
