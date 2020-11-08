@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  products-database:
+    container_name: products-database
+    image: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: toor
+      POSTGRES_DB: products
+volumes:
+  db-data:
