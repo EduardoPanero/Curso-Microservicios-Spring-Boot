@@ -1,8 +1,10 @@
 package es.eduardopanero.microservices.products.controllers;
 
+import es.eduardopanero.microservices.products.common.ProductsConfig;
 import es.eduardopanero.microservices.products.models.Product;
 import es.eduardopanero.microservices.products.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +14,12 @@ import java.util.List;
 
 @RestController(value = "")
 public class ProductsController {
+
 	@Autowired
 	private ProductsService productsService;
+
+	@Autowired
+	private ProductsConfig productsConfig;
 
 	@GetMapping
 	public ResponseEntity<List<Product>> get() {
@@ -64,5 +70,10 @@ public class ProductsController {
 		} catch (Exception ex) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
+	}
+
+	@GetMapping("profile")
+	public ResponseEntity getProfile(){
+		return ResponseEntity.ok(productsConfig.getProfile());
 	}
 }

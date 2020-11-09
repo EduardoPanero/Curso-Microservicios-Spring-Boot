@@ -1,0 +1,7 @@
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/products
+        username: root
+        password: toor
+
+profile: this is default
