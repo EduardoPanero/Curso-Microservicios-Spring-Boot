@@ -2,5 +2,6 @@ spring:
     datasource:
         url: jdbc:postgresql://localhost:5432/products
         username: root
-        password: toor
+        password: '{cipher}1eff35ecb4eb6d33cc3b524a2a9320d508c7dea1a9e51ed13ad781fd0ce71efb'
+
 profile: this is dev
