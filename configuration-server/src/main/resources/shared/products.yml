@@ -2,6 +2,6 @@ spring:
     datasource:
         url: jdbc:postgresql://localhost:5432/products
         username: root
-        password: '{cipher}1eff35ecb4eb6d33cc3b524a2a9320d508c7dea1a9e51ed13ad781fd0ce71efb'
+        password: '{cipher}AQATEsSgef6BV+ar/VhOM9MKIgvalBkclRm9mXwxhdKoCDFKPu4t9iXi3UJdn0S+8p1xV31Gmyhsl3TxWy1XQFY2Q+jBa3RDx6rFv/reNoJGbRewzq/T6WbI3LWEotJs9DhEq4n+bnZP0sKnBHgZ0lC4OlUefGTiGXcQf/f1gbyhkushIXUOnv5x8VtOJ5zz6Qc73POAm8GVfkb02TpOdXKFc0mJg5YtQsHbiQntvV07l+zLi31SfFmxx8no8oKC5MkW5hF7fBsD+Pr0dKA+tA2dX+s62HRG1Xsde4eZ304aMy0NTOpxP0wf7xHH+wHpFVVzlQgFaPY86ZMVTkvbodF4W/tnfibg0xhFe/g7g1f26xHh9tt1dIFRiK0GGpYa910='
 
 profile: this is default
