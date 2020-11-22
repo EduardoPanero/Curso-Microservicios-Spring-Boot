@@ -1,16 +1,12 @@
-package es.eduardopanero.microservices.clients.models;
+package es.eduardopanero.microservices.clients.models.response;
 
 import lombok.Data;
-import lombok.NonNull;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.UUID;
 
-@Data
-@Table("addresses")
-public class Address {
+public class AddressResponse {
 
 	@Id
 	private Long addressId;
@@ -21,16 +17,6 @@ public class Address {
 
 	public void setAddressId(Long addressId) {
 		this.addressId = addressId;
-	}
-
-	private UUID clientId;
-
-	public UUID getClientId() {
-		return clientId;
-	}
-
-	public void setClientId(UUID clientId) {
-		this.clientId = clientId;
 	}
 
 	private String street;
@@ -93,43 +79,37 @@ public class Address {
 		this.door = door;
 	}
 
-
-	public Address withClientId(UUID clientId){
-		this.setClientId(clientId);
-		return this;
-	}
-
-	public Address withAddressId(Long addressId){
+	public AddressResponse withAddressId(Long addressId){
 		this.setAddressId(addressId);
 		return this;
 	}
 
-	public Address withStreet(String street){
+	public AddressResponse withStreet(String street){
 		this.setStreet(street);
 		return this;
 	}
 
-	public Address withNumber(Long number){
+	public AddressResponse withNumber(Long number){
 		this.setNumber(number);
 		return this;
 	}
 
-	public Address withZipCode(String zipCode){
+	public AddressResponse withZipCode(String zipCode){
 		this.setZipCode(zipCode);
 		return this;
 	}
 
-	public Address withDefaultAddress(boolean defaultAddress) {
+	public AddressResponse withDefaultAddress(boolean defaultAddress) {
 		this.setDefaultAddress(defaultAddress);
 		return this;
 	}
 
-	public Address withFlat(Long flat){
+	public AddressResponse withFlat(Long flat){
 		this.setFlat(flat);
 		return this;
 	}
 
-	public Address withDoor(String door){
+	public AddressResponse withDoor(String door){
 		this.setDoor(door);
 		return this;
 	}

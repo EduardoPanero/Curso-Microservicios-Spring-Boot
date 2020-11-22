@@ -1,17 +1,15 @@
-package es.eduardopanero.microservices.clients.models;
+package es.eduardopanero.microservices.clients.models.response;
 
+import es.eduardopanero.microservices.clients.models.Client;
 import lombok.Data;
-import lombok.NonNull;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
-@Data
-@Table("clients")
-public class Client  {
-	@Id
+public class ClientResponse {
+
 	private UUID clientId;
 
 	public UUID getClientId() {
@@ -42,26 +40,6 @@ public class Client  {
 		this.email = email;
 	}
 
-	private byte[] password;
-
-	public byte[] getPassword() {
-		return password;
-	}
-
-	public void setPassword(byte[] password) {
-		this.password = password;
-	}
-
-	private byte[] salt;
-
-	public byte[] getSalt() {
-		return salt;
-	}
-
-	public void setSalt(byte[] salt) {
-		this.salt = salt;
-	}
-
 	private boolean enabled;
 
 	public boolean isEnabled() {
@@ -72,34 +50,33 @@ public class Client  {
 		this.enabled = enabled;
 	}
 
-	public Client withClientId(UUID clientId){
+	public ClientResponse withClientId(UUID clientId){
 		this.setClientId(clientId);
 		return this;
 	}
 
-	public Client withName(String name){
+	public ClientResponse withName(String name){
 		this.setName(name);
 		return this;
 	}
 
-	public Client withEmail(String email){
+	public ClientResponse withEmail(String email){
 		this.setEmail(email);
 		return this;
 	}
 
-	public Client withPassword(byte[] password){
-		this.setPassword(password);
-		return this;
-	}
-
-	public Client withSalt(byte[] salt){
-		this.setSalt(salt);
-		return this;
-	}
-
-	public Client withEnabled(boolean enabled){
+	public ClientResponse withEnabled(boolean enabled){
 		this.setEnabled(enabled);
 		return this;
+	}
+
+	public static Mono<ClientResponse> mapToClientResponse(Client client) {
+		return Mono.just(new ClientResponse()
+				.withClientId(client.getClientId())
+				.withName(client.getName())
+				.withEmail(client.getEmail())
+				.withEnabled(client.isEnabled()));
+
 	}
 
 }
