@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  orders-database:
+    container_name: orders-database
+    image: postgres
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: toor
+      POSTGRES_DB: orders

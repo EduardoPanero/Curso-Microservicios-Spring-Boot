@@ -21,6 +21,12 @@ public class ClientsController {
 	@Autowired
 	private ClientsService clientsService;
 
+	@GetMapping("clients/{clientId}")
+	public ResponseEntity<Mono<ClientResponse>> getClientById(@PathVariable(value="clientId") UUID clientId) {
+		return ResponseEntity.ok(this.clientsService
+				.getClient(clientId)
+				.flatMap(ClientResponse::mapToClientResponse));
+	}
 
 	@GetMapping("me")
 	public ResponseEntity<Mono<ClientResponse>> getMe(Principal principal) {

@@ -8,10 +8,7 @@ import es.eduardopanero.microservices.clients.services.AddressesService;
 import es.eduardopanero.microservices.clients.services.ClientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -35,6 +32,18 @@ public class AddressesController {
 	public ResponseEntity<Flux<Address>> getAddresses(Principal principal) {
 		return ResponseEntity.ok(this.addressesService
 				.getAddressesByClientId(UUID.fromString(principal.getName())));
+	}
+
+	@GetMapping("addresses/default")
+	public ResponseEntity<Mono<Address>> getDefaultAddress(Principal principal) {
+		return ResponseEntity.ok(this.addressesService
+				.getDefaultAddressByClientId(UUID.fromString(principal.getName())));
+	}
+
+	@GetMapping("address/{addressId}")
+	public ResponseEntity<Mono<Address>> getAddressById(@PathVariable(value="addressId") Long addressId) {
+		return ResponseEntity.ok(this.addressesService
+				.getAddressById(addressId));
 	}
 
 }

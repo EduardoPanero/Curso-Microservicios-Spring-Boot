@@ -1,6 +1,6 @@
-package es.eduardopanero.microservices.clients.services;
+package es.eduardopanero.microservices.orders.services;
 
-import es.eduardopanero.microservices.clients.config.ClientsConfiguration;
+import es.eduardopanero.microservices.orders.config.OrdersConfiguration;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -21,25 +21,15 @@ import java.util.UUID;
 public class JwtService {
 
 	@Autowired
-	private ClientsConfiguration clientsConfiguration;
+	private OrdersConfiguration ordersConfiguration;
 
 	private Key getSecretKey(){
 		try {
-			return new SecretKeySpec(this.clientsConfiguration.getSecret().getBytes("UTF-8"), SignatureAlgorithm.HS256.getJcaName());
+			return new SecretKeySpec(this.ordersConfiguration.getSecret().getBytes("UTF-8"), SignatureAlgorithm.HS256.getJcaName());
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	public Mono<String> createJwt(UUID clientId) {
-		return Mono.just(Jwts.builder()
-				.setIssuer("identity")
-				.setSubject(clientId.toString())
-				.setExpiration(Date.from(Instant.now().plus(Duration.ofHours(30))))
-				.setIssuedAt(Date.from(Instant.now()))
-				.signWith(this.getSecretKey(), SignatureAlgorithm.HS256)
-				.compact());
 	}
 
 	public Jws<Claims> validate(String jwt) {

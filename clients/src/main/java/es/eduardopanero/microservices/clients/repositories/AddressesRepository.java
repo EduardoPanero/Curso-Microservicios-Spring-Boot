@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public interface AddressesRepository extends ReactiveCrudRepository<Address, Long> {
 	@Query("SELECT * FROM Addresses WHERE client_id = :clientId AND default_address IS TRUE LIMIT 1")
-	Flux<Address> findDefaultAddress(UUID clientId);
+	Mono<Address> findDefaultAddress(UUID clientId);
 
 	@Query("SELECT * FROM Addresses WHERE client_id = :clientId")
 	Flux<Address> findAddressesByClientId(UUID clientId);

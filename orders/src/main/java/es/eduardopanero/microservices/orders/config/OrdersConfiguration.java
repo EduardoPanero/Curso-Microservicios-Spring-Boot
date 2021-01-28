@@ -1,10 +1,10 @@
-package es.eduardopanero.microservices.clients.config;
+package es.eduardopanero.microservices.orders.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ClientsConfiguration {
+public class OrdersConfiguration {
 
 	@Value("${spring.data.postgres.host}")
 	private String host;
@@ -51,5 +51,12 @@ public class ClientsConfiguration {
 
 	public String getSecret() {
 		return secret;
+	}
+
+	@Value("${es.eduardopanero.microservices.clients.url}")
+	private String clientsServiceUrl;
+
+	public String getClientsServiceUrl() {
+		return clientsServiceUrl;
 	}
 }

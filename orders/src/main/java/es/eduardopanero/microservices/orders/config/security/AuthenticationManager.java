@@ -1,7 +1,6 @@
-package es.eduardopanero.microservices.clients.config.security;
+package es.eduardopanero.microservices.orders.config.security;
 
-import es.eduardopanero.microservices.clients.services.ClientsService;
-import es.eduardopanero.microservices.clients.services.JwtService;
+import es.eduardopanero.microservices.orders.services.JwtService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Component
 public class AuthenticationManager implements ReactiveAuthenticationManager {

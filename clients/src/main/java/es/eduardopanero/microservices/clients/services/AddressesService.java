@@ -26,7 +26,6 @@ public class AddressesService {
 		return request.validateAndMap(clientId)
 				.flatMap(address -> this.addressesRepository
 						.findDefaultAddress(clientId)
-						.singleOrEmpty()
 						.map(__ ->address.withDefaultAddress(false))
 						.switchIfEmpty(Mono.just(address.withDefaultAddress(true))))
 				.flatMap(this.addressesRepository::save);
@@ -36,5 +35,16 @@ public class AddressesService {
 		 return this.clientRepository.findById(clientId)
 				.flatMapMany(x -> this.addressesRepository.findAddressesByClientId(clientId))
 				.switchIfEmpty(Flux.error(new ValidationException("this clientId doesn't exists")));
+	}
+
+	public Mono<Address> getDefaultAddressByClientId(UUID clientId) {
+		return this.clientRepository.findById(clientId)
+				.flatMap(x -> this.addressesRepository.findDefaultAddress(clientId))
+				.switchIfEmpty(Mono.error(new ValidationException("this clientId doesn't exists")));
+	}
+
+	public Mono<Address> getAddressById(Long addressId) {
+		return this.addressesRepository.findById(addressId)
+				.switchIfEmpty(Mono.error(new ValidationException("this clientId doesn't exists")));
 	}
 }
